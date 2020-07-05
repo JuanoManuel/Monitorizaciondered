@@ -1,0 +1,21 @@
+header {
+	background-color: #846267;
+	color: #f7f9f9;
+}
+
+body {
+	background-color: #bfb6bb;
+}
+
+.content {
+	background-color: #eaeaea;
+	border-radius: 5px;
+	margin-top: 20px;
+}
+tbody{
+	background-color: white;
+}
+
+.title {
+	color: white;
+}

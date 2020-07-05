@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>SNMP</title>
+	<link href="{{ url_for('static',filename='styles/bootstrap.css')}}" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/estilos.css')}}">
+</head>
+<body>
+	<header>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-auto">
+					<h2>Monitorización de red</h2>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="container content p-4">
+		<h1>Listado de agentes</h1>
+		<table class="table">
+			<thead class="thead-dark">
+			  <th><strong>Host</strong></th>
+			  <th><strong>Comunidad</strong></th>
+			  <th><strong>Version</strong></th>
+			  <th><strong>Puerto</strong></th>
+			  <th><strong>SO</strong></th>
+			  <th><strong># Interfaces</strong></th>
+			  <th><strong>Activar</strong></th>
+			  <th><strong>Desactivar</strong></th>
+			  <th><strong>Reporte</strong></th>
+			  <th><strong>Eliminar</strong></th>
+			</thead>
+
+			<!-- Ciclo para obtener datos de los agentes de MYSQL-->
+			<tbody>
+			{% for row in data %}
+			    <tr>
+			   		<td>{{row[0]}}</td>
+			   		<td>{{row[1]}}</td>
+			   		<td>{{row[2]}}</td>
+			   		<td>{{row[3]}}</td>
+			   		<td>{{row[4]}}</td>
+			    	<td>1</td>
+			    	<td>
+			    		<form action="/activate" method="POST">
+			    			<input type="hidden" name="host" value="{{row[0]}}">
+			    			<input class="btn btn-secondary" type="submit" value="Activar">
+			    		</form>
+			    	</td>
+			    	<td>
+			    		<form action="/desactivate" method="POST">
+			    			<input type="hidden" name="host" value="{{row[0]}}">
+			    			<input class="btn btn-secondary" type="submit" value="Desactivar">
+			    		</form>
+			    	</td>
+			    	<td>
+			    		<form action="/report" method="POST">
+			    			<input type="hidden" name="host" value="{{row[0]}}">
+			    			<input class="btn btn-secondary" type="submit" value="Ver Reporte">
+			    		</form>
+			    	</td>		    	
+			    	<td>
+			    		<form action="/delete" method="POST">
+			    			<input type="hidden" name="host" value="{{row[0]}}">
+			    			<input class="btn btn-secondary" type="submit" value="Borrar">
+			    		</form>		    	
+			    	</td>
+			    </tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
+		<a class="btn btn-dark" role="button" href="addAgent">Agregar Agente</a>
+	</div>
+</body>
+</html>

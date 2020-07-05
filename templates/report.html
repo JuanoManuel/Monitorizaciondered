@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link href="{{ url_for('static',filename='styles/bootstrap.css')}}" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/estilos.css')}}">
+</head>
+<body>
+	<header>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-auto">
+					<h2>Monitorización de red</h2>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div class="container content">
+		<div class="row justify-content-center">
+			<div class="col-auto"> <h4>Reporte</h4></div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-auto">
+				<div class="row">
+					<div class="bg-dark col-12 title">RAM status</div>
+					<div class="col-12 p-0">
+						<embed type="image/svg+xml" src={{ramChartData|safe}} style="width: 100%"></embed>
+					</div>
+				</div>
+			</div>
+			<div class="col-auto">
+				<div class="row">
+					<div class="bg-dark col-12 title">CPU Times</div>
+					<div class="col-12 p-0">
+						<embed type="image/svg+xml" src={{cpuChartData|safe}} style="width: 100%"></embed>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-auto">
+				<div class="row">
+					<div class="col-12 bg-dark title">Input traffic</div>
+					<div class="col-12">
+						<embed type="image/svg+xml" src={{inputChartData|safe}} style="width: 100%"></embed>
+					</div>
+				</div>
+			</div>
+			<div class="col-auto">
+				<div class="row">
+					<div class="col-12 bg-dark title">Output traffic</div>
+					<div class="col-12">
+						<embed type="image/svg+xml" src={{outputChartData|safe}} style="width: 100%"></embed>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

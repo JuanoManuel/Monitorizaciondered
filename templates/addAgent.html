@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Add Agent</title>
+	<link href="{{ url_for('static',filename='styles/bootstrap.css')}}" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/estilos.css')}}">
+</head>
+<body>
+	<header>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-auto">
+					<h2>Monitorización de red</h2>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="container content p-4">
+		<form action="/createAgent" method="POST">
+			<div class="row justify-content-center">
+				<div class="form-group col-auto">
+					<label for="host">Host:</label>
+					<input class="form-control" placeholder="Host" type="text" name="host">
+				</div>
+				<div class="form-group col-auto">
+					<label for="communty">Community:</label>
+					<input class="form-control" type="text" name="community">
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-auto form-group">
+					<label for="version">SNMP version:</label>
+					<input class="form-control" type="text" name="version">
+				</div>
+				<div class="col-auto form-group">
+					<label for="port">Port:</label>
+					<input class="form-control" type="text" name="port">
+				</div>
+			</div>
+			<div class="row">
+				<input class="btn btn-block btn-dark" type="submit" role="button" value="New agent">
+			</div>
+		</form>
+	</div>
+</body>
+</html>

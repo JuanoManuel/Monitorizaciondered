@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>SNMP</title>
+	<link href="{{ url_for('static',filename='styles/bootstrap.css')}}" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/estilos.css')}}">
+</head>
+<body>
+	<header>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-auto">
+					<h2>Monitorización de red</h2>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="container content mb-2">
+		<div class="row">
+			<div class="col-auto">{{host}}</div>
+			<div class="col-auto">{{community}}</div>
+			<div class="col-auto">{{version}}</div>
+			<div class="col-auto">{{port}}</div>
+			<div class="col-auto">{{os}}</div>
+			<div class="col-auto">{{interfaces}}</div>
+			<div class="col-auto">{{reboot}}</div>
+		</div>
+	</div>
+</body>
+</html>
