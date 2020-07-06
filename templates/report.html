@@ -13,6 +13,7 @@
 				<div class="col-auto">
 					<h2>Monitorización de red</h2>
 				</div>
+				<div class="col-auto p-1"><a class="btn btn-secondary" role="button" href="returned">Regresar</a></div>
 			</div>
 		</div>
 	</header>
@@ -23,36 +24,36 @@
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-auto">
-				<div class="row">
+				<div class="row item">
 					<div class="bg-dark col-12 title">RAM status</div>
 					<div class="col-12 p-0">
-						<embed type="image/svg+xml" src={{ramChartData|safe}} style="width: 100%"></embed>
+						<embed class="shadow" type="image/svg+xml" src={{ramChartData|safe}} style="width: 100%"></embed>
 					</div>
 				</div>
 			</div>
 			<div class="col-auto">
-				<div class="row">
+				<div class="row item">
 					<div class="bg-dark col-12 title">CPU Times</div>
 					<div class="col-12 p-0">
-						<embed type="image/svg+xml" src={{cpuChartData|safe}} style="width: 100%"></embed>
+						<embed class="shadow" type="image/svg+xml" src={{cpuChartData|safe}} style="width: 100%"></embed>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-auto">
-				<div class="row">
+				<div class="row item">
 					<div class="col-12 bg-dark title">Input traffic</div>
-					<div class="col-12">
-						<embed type="image/svg+xml" src={{inputChartData|safe}} style="width: 100%"></embed>
+					<div class="col-12 p-0">
+						<embed class="shadow" type="image/svg+xml" src={{inputChartData|safe}} style="width: 100%"></embed>
 					</div>
 				</div>
 			</div>
 			<div class="col-auto">
-				<div class="row">
+				<div class="row item">
 					<div class="col-12 bg-dark title">Output traffic</div>
-					<div class="col-12">
-						<embed type="image/svg+xml" src={{outputChartData|safe}} style="width: 100%"></embed>
+					<div class="col-12 p-0">
+						<embed class="shadow" type="image/svg+xml" src={{outputChartData|safe}} style="width: 100%"></embed>
 					</div>
 				</div>
 			</div>
