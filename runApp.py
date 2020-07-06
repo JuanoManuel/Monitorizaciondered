@@ -6,6 +6,7 @@ from getSNMP import ComandSNMP,TupleComandSNMP
 import pygal
 
 app = Flask(__name__)
+getDataThread = threading.Thread()
 
 mysql = MySQL()
 #mysql login
@@ -55,6 +56,10 @@ def delete():
 	host = request.form['host']
 	cursor.execute("DELETE FROM agents WHERE host='"+host+"'")
 	conn.commit()
+	return redirect(url_for('main'))
+
+@app.route('/returned',methods=['GET','POST'])
+def returned():
 	return redirect(url_for('main'))
 
 @app.route('/report',methods=['GET','POST'])
@@ -108,13 +113,17 @@ def activate():
 	cursor.execute("SELECT comunity FROM agents WHERE host='"+host+"'")
 	community = cursor.fetchone()
 	community = community[0]
+	global getDataThread
 	getDataThread = threading.Thread(name='leer',target=leer,args=(host,community,))
+	print("activar: "+getDataThread.getName())
 	getDataThread.start()
 	return redirect(url_for('main'))
 
 @app.route('/desactivate',methods=['GET','POST'])
 def desactivate():
-	getDataThread._Thread__stop()
+	global getDataThread
+	print("Desactivar: "+getDataThread.getName())
+	getDataThread.join()
 	return redirect(url_for('main'))
 
 def leer(host,community):

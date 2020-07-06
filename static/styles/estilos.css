@@ -19,3 +19,7 @@ tbody{
 .title {
 	color: white;
 }
+
+.item {
+	margin: 5px;
+}
