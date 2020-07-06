@@ -10,18 +10,16 @@ app = Flask(__name__)
 mysql = MySQL()
 #mysql login
 app.config['MYSQL_DATABASE_USER'] = 'flask'
-app.config['MYSQL_DATABASE_PASSWORD'] = '**H0l4Mund0**'
+app.config['MYSQL_DATABASE_PASSWORD'] = '**Hol4Mund0**'
 app.config['MYSQL_DATABASE_DB'] = 'snmp'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 
 conn = mysql.connect()
 cursor = conn.cursor()
+
 inputValues = list()
 outputValues = list()
-
-if __name__ == '__main__':
-	app.run()
 
 @app.route('/')
 def main():
@@ -131,3 +129,7 @@ def leer(host,community):
 		print("outputTrafic: "+str(outputTrafic))
 		outputValues.append(outputTrafic)
 		time.sleep(1)
+
+if __name__ == '__main__':
+	app.run()
+
