@@ -1,3 +1,4 @@
+from __future__ import print_function
 import  time, os, threading
 import sys
 from flask import Flask, render_template, request, json, redirect,url_for
@@ -5,8 +6,10 @@ from flaskext.mysql import MySQL
 from getSNMP import ComandSNMP,TupleComandSNMP
 import pygal
 
+
 app = Flask(__name__)
 getDataThread = threading.Thread()
+stop_threads = False
 
 mysql = MySQL()
 #mysql login
@@ -54,6 +57,7 @@ def signUp():
 @app.route('/delete',methods=['GET','POST'])
 def delete():
 	host = request.form['host']
+	print(host, file=sys.stderr)
 	cursor.execute("DELETE FROM agents WHERE host='"+host+"'")
 	conn.commit()
 	return redirect(url_for('main'))
@@ -109,6 +113,8 @@ def report():
 @app.route('/activate',methods=['GET','POST'])
 def activate():
 	host = request.form['host']
+	global stop_threads
+	stop_threads = False
 	#get the community from the DB using the host
 	cursor.execute("SELECT comunity FROM agents WHERE host='"+host+"'")
 	community = cursor.fetchone()
@@ -123,12 +129,13 @@ def activate():
 def desactivate():
 	global getDataThread
 	print("Desactivar: "+getDataThread.getName())
-	getDataThread.join()
+	global stop_threads
+	stop_threads = True
 	return redirect(url_for('main'))
 
 def leer(host,community):
 	print("Hilo iniciado")
-	while 1:
+	while True:
 		#inputdata graph
 		inputTrafic = int(TupleComandSNMP(community,host,"1.3.6.1.2.1.2.2.1.10.3"))
 		print("inputTrafic: "+str(inputTrafic))
@@ -138,6 +145,11 @@ def leer(host,community):
 		print("outputTrafic: "+str(outputTrafic))
 		outputValues.append(outputTrafic)
 		time.sleep(1)
+		global stop_threads
+		print(stop_threads)
+		if stop_threads:
+			break
+		
 
 if __name__ == '__main__':
 	app.run()
